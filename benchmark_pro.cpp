@@ -1,6 +1,6 @@
 /**
- * Advanced Inverse MST Benchmark Suite
- * Target: Top-tier Paper Quality Analysis
+ * Advanced Inverse MST Benchmarks
+ * Author: <Lizhan Hong>(lizhan.hong@polytechnique.edu)
  * 
  * Algorithms:
  * 1. Greedy (Heuristic) - Real Execution
