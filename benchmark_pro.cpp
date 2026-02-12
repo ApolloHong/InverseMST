@@ -5,8 +5,6 @@
  * Algorithms:
  * 1. Greedy (Heuristic) - Real Execution
  * 2. MCMF (Optimal) - Real Execution
- * 3. General LP (Simplex) - Performance Simulation
- * 4. Ellipsoid Method - Performance Simulation
  */
 
 #include <iostream>
@@ -255,26 +253,7 @@ int main() {
         // Greedy Complexity ~ O(M * N) (Just path finding)
         fout << fname << ",Greedy," << N << "," << M << "," << cost_greedy << "," << time_greedy << "," << (long long)M*N << endl;
 
-        // -----------------------------
-        // 3. Simulate General LP (Simplex)
-        // -----------------------------
-        // Theory: Simplex is roughly O(m^2 * n) or O(m^3) in worst case for dense.
-        // Here variables = M, Constraints approx M*N/2 (average path length).
-        // Let's model it as slower than MCMF. 
-        // We simulate time based on complexity relative to MCMF + overhead.
-        double factor_lp = 50.0; // LP overhead constant
-        double time_lp = time_mcmf * factor_lp * noise(gen); 
-        if (time_lp < 0.1) time_lp = 0.1; // Min threshold
-        // LP cost is optimal (same as MCMF)
-        fout << fname << ",General_LP," << N << "," << M << "," << cost_mcmf << "," << time_lp << "," << (long long)pow(M, 3) << endl;
 
-        // -----------------------------
-        // 4. Simulate Ellipsoid Method
-        // -----------------------------
-        // Theory: Polynomial O(n^6) but huge constants. Very slow for small inputs compared to Simplex.
-        double factor_ellip = 500.0; 
-        double time_ellip = time_mcmf * factor_ellip * noise(gen);
-        fout << fname << ",Ellipsoid," << N << "," << M << "," << cost_mcmf << "," << time_ellip << "," << (long long)pow(M, 4) << endl; // Simplified poly
     }
 
     fout.close();
